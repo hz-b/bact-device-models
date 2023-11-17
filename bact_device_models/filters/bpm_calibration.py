@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class BPMCalibrationPlane:
     """scale and offset for the bpm (both in millimeter)
@@ -11,14 +12,14 @@ class BPMCalibrationPlane:
 
     #: from bits to -10/10 volt, assuming that bits are signed
     #: bact2 used 10/(2**15)
-    bit2val : float
+    bit2val: float
     #: from volt to meter ... 1.0 for most bpm's
-    scale : float
+    scale: float
     #: offset to correct meter for
-    offset : float
-    active : bool
+    offset: float
+    active: bool
 
-    def __init__(self, *, bit2val = 10/(2**15), scale=1e-3, offset=0.0, active=True):
+    def __init__(self, *, bit2val=10 / (2 ** 15), scale=1e-3, offset=0.0, active=True):
         self.bit2val = bit2val
         self.scale = scale
         self.offset = offset
@@ -30,7 +31,8 @@ class BPMCalibrationPlane:
         Todo:
             clipping etc...
         """
-        return int ( (pos + self.offset) / self.scale / self.bit2val )
+        bitv = (pos + self.offset) / self.scale / self.bit2val
+        return int(round(bitv))
 
     def to_pos(self, bits: int) -> float:
         """
@@ -44,7 +46,7 @@ class BPMCalibrationPlane:
         Todo:
             check that the scale is positive ?
         """
-        return abs( (bits * self.bit2val) * self.scale )
+        return abs((bits * self.bit2val) * self.scale)
 
     def inverse(self, bits: int) -> float:
         """bluesky / ophyd convention"""
@@ -54,8 +56,8 @@ class BPMCalibrationPlane:
         """bluesky / ophyd convention"""
         return self.to_bits(pos)
 
+
 @dataclass
 class BPMCalibration:
-    x : BPMCalibrationPlane
-    y : BPMCalibrationPlane
-
+    x: BPMCalibrationPlane
+    y: BPMCalibrationPlane
