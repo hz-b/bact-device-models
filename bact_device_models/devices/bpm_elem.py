@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Sequence
 import jsons
 
 
@@ -15,7 +16,7 @@ class BpmElementList:
         return dict(source="", shape=[32], dtype="array")
 
     def to_dict(self, timestamp):
-        return {'value': self.bpmElemList, 'timestamp': timestamp}
+        return {"value": self.bpmElemList, "timestamp": timestamp}
 
     @staticmethod
     def to_json(data):
@@ -38,3 +39,14 @@ class BpmElem:
     stat: float
     gain_raw: float
     name: str
+
+
+@dataclass
+class BpmElementOneTurn:
+    element: BpmElem
+    turn: int
+
+
+@dataclass
+class BpmElementTurnByTurn:
+    turn_by_turn_data: Sequence[BpmElementOneTurn]
