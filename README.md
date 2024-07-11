@@ -1,3 +1,5 @@
+[![CI](https://github.com/hz-b/bact-device-models/actions/workflows/python-package.yml/badge.svg)](https://github.com/hz-b/bact-device-models/actions/workflows/python-package.yml)
+
 # bact-device-models
 Device models used in bact
 
