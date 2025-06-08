@@ -7,9 +7,9 @@ from typing import Sequence, Union
 @dataclass
 class BPMElementPosition:
     #: in nanometer
-    x: int
+    x: float
     #: in nanometer
-    y: int
+    y: float
 
 
 @dataclass
@@ -19,26 +19,26 @@ class BPMElementSignalFromButtons:
     Todo:
         find out what the units of these signals are in reality
     """
-    a: int
-    b: int
-    c: int
-    d: int
+    a: float
+    b: float
+    c: float
+    d: float
 
 
 @dataclass
 class BPMElement:
     name: str
     pos: BPMElementPosition
-    sig: Union[BPMElementSignalFromButtons, None]
+    sig: BPMElementSignalFromButtons
 
 
 @dataclass
 class BPMElementList:
     bpms: Sequence[BPMElement]
 
-    def get_eleement(self, name: str) -> BPMElement:
-        @functools.lru_cache(maxsize=1)
-        def get_dict():
-            return {elem.name: elem for elem in self.bpms}
+    def get_element(self, name: str) -> BPMElement:
+        return self._lut[name]
 
-        return get_dict()[name]
+    @functools.cached_property
+    def _lut(self):
+        return {elem.name: elem for elem in self.bpms}
