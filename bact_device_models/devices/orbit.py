@@ -48,4 +48,3 @@ class Orbit:
     @functools.cached_property
     def _lut(self) -> Dict[Hashable, BPMReading]:
         return {elem.name: elem for elem in self.orbit}
-
