@@ -26,7 +26,7 @@ class BPMButtons:
 
 @dataclass
 class BPMReading:
-    name: Hashable
+    name: str
     pos: BPMPosition
     btns: BPMButtons
 
