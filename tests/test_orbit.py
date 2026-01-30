@@ -1,13 +1,21 @@
 import pytest
 
-from bact_device_models.devices.orbit import BPMReading, Orbit, BPMPosition, BPMButtons
+from bact_device_models.devices.orbit import Orbit, BPMPosition, BPMButtons, BPMReading
 
 
 def test_bpm_to_orbit():
     orb = Orbit(
         orbit=[
-            BPMReading(name="dev_1", pos=BPMPosition(x=355, y=113), btns=BPMButtons(a=1, b=2, c=3, d=4)),
-            BPMReading(name="dev_2", pos=BPMPosition(x=42, y=1024), btns=BPMButtons(a=3, b=5, c=7, d=11))
+            BPMReading(
+                name="dev_1",
+                pos=BPMPosition(x=355, y=113),
+                btns=BPMButtons(a=1, b=2, c=3, d=4),
+            ),
+            BPMReading(
+                name="dev_2",
+                pos=BPMPosition(x=42, y=1024),
+                btns=BPMButtons(a=3, b=5, c=7, d=11),
+            ),
         ]
     )
 

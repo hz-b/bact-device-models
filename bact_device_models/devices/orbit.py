@@ -5,8 +5,8 @@ from typing import Sequence, Hashable, Dict
 
 @dataclass
 class BPMPosition:
-    """
-    """
+    """transversal position as read by a single bpm"""
+
     x: float
     y: float
 
@@ -15,8 +15,9 @@ class BPMPosition:
 class BPMButtons:
     """
     todo:
-        consider renaming bpm buttons to give them mre meaning
+        consider renaming bpm buttons to give them more meaning
     """
+
     a: float
     b: float
     c: float
@@ -41,7 +42,7 @@ class Orbit:
         """
         Todo:
             consider to return a more descriptive Exception if
-            identifer is not found
+            identifier is not found
         """
         return self._lut[id_]
 
