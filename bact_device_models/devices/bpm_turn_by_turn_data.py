@@ -1,0 +1,25 @@
+from dataclasses import dataclass
+from functools import cached_property
+from typing import Sequence, Dict
+
+
+@dataclass
+class BPMTurnByTurnData:
+    """each value for one turn, typically in nm"""
+
+    x: Sequence[int]
+    y: Sequence[int]
+    timestamp: float
+    name: str
+
+
+@dataclass
+class BPMTurnByTurnDataCollection:
+    col: Sequence[BPMTurnByTurnData]
+
+    def get(self, id_: str) -> BPMTurnByTurnData:
+        return self._dict[id_]
+
+    @cached_property
+    def _dict(self) -> Dict[str, BPMTurnByTurnData]:
+        return {data.name: data for data in self.col}
