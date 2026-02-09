@@ -2,6 +2,8 @@ from dataclasses import dataclass
 from functools import cached_property
 from typing import Sequence, Dict
 
+from bact_device_models.devices.data_window import DataWindow
+
 
 @dataclass
 class BPMTurnByTurnData:
@@ -11,6 +13,9 @@ class BPMTurnByTurnData:
     y: Sequence[int]
     timestamp: float
     name: str
+
+    #: which data was selected
+    sliced : DataWindow
 
 
 @dataclass
