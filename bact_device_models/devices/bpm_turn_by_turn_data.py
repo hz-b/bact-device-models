@@ -8,9 +8,10 @@ from bact_device_models.devices.data_window import DataWindow
 @dataclass
 class BPMTurnByTurnData:
     """each value for one turn, typically in nm"""
-
     x: Sequence[int]
     y: Sequence[int]
+    sum: Sequence[int]
+
     timestamp: float
     name: str
 
